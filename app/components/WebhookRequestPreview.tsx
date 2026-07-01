@@ -1,6 +1,7 @@
 "use client";
 
 import { useSessionStore } from "../lib/sessionStore";
+import { maskApiKey } from "../lib/maskApiKey";
 import { WebhookEndpointDto } from "../types/webhook";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export function WebhookRequestPreview({ endpoint }: Props) {
-  const apiKey = useSessionStore((s) => s.session?.apiKey ?? "—");
+  const apiKey = useSessionStore((s) => maskApiKey(s.session?.apiKey ?? "—"));
 
   const body = JSON.stringify(
     {

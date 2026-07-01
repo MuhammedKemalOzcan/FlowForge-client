@@ -1,9 +1,10 @@
 "use client";
 
 import { useSessionStore } from "../lib/sessionStore";
+import { maskApiKey } from "../lib/maskApiKey";
 
 export function ApiKeyBanner() {
-  const apiKey = useSessionStore((s) => s.session?.apiKey ?? "—");
+  const apiKey = useSessionStore((s) => maskApiKey(s.session?.apiKey ?? "—"));
 
   return (
     <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 flex flex-col gap-3">
